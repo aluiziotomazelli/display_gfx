@@ -9,8 +9,6 @@ list(APPEND EXTRA_COMPONENT_DIRS
     "${COMPONENT_ROOT}"
     "${CMAKE_CURRENT_LIST_DIR}/gtest"
     "${CMAKE_CURRENT_LIST_DIR}/common"
-    "$ENV{IDF_PATH}/tools/mocks/esp_timer"
-    "$ENV{IDF_PATH}/tools/mocks/driver"
 )
 
 # Explicitly list the components to be included in the build

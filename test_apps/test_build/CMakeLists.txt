@@ -6,11 +6,11 @@ get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
 
 list(APPEND EXTRA_COMPONENT_DIRS 
     "${PROJECT_ROOT}" 
-    "${PROJECT_ROOT}/external"
+    # "${PROJECT_ROOT}/external"
     "$ENV{IDF_PATH}/components"
 )
 
-set(COMPONENTS main battery_monitor idf_hals)
+set(COMPONENTS main display_gfx)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(test_build)
