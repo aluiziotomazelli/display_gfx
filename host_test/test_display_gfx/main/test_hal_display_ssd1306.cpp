@@ -8,8 +8,8 @@ TEST(HalDisplaySsd1306Test, HostDummyBehavior) {
     Ssd1306Config config;
     config.width = 128;
     config.height = 64;
-    config.i2c_port = 0;
     config.i2c_address = 0x3C;
+    config.i2c_bus = nullptr;
 
     HalDisplaySsd1306 display(config);
 

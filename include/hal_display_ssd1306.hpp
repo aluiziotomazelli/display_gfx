@@ -8,7 +8,7 @@
 
 #if __has_include("esp_lcd_panel_io.h")
 #define HAL_DISPLAY_SSD1306_HAS_ESP_LCD 1
-#include "driver/i2c.h"
+#include "driver/i2c_master.h"
 #include "esp_lcd_panel_io.h"
 #include "esp_lcd_panel_ops.h"
 #include "esp_lcd_panel_vendor.h"
@@ -22,11 +22,12 @@
  * @brief Configuration parameters for SSD1306 OLED display.
  */
 struct Ssd1306Config {
-    int i2c_port = 0;           ///< I2C port number (0 or 1)
-    uint8_t i2c_address = 0x3C; ///< I2C device address (default 0x3C)
-    uint16_t width = 128;       ///< Display width in pixels
+    void* i2c_bus = nullptr;    ///< The I2C master bus handle (i2c_master_bus_handle_t)
+    uint8_t i2c_address = 0x3C; ///< The I2C address of the SSD1306 (typically 0x3C or 0x3D)
+    uint16_t width = 128;       ///< Width of the display in pixels (e.g. 128)
     uint16_t height = 64;       ///< Display height in pixels
     int rst_gpio = -1;          ///< Reset GPIO pin (-1 if unused)
+    uint32_t i2c_clk_speed_hz = 400000; ///< I2C clock speed in Hz (default 400kHz)
 };
 
 /**

@@ -31,18 +31,25 @@ esp_err_t HalDisplaySsd1306::init() {
     initialized_ = true;
     return ESP_OK;
 #else
-    ESP_LOGI(TAG, "Initializing SSD1306 OLED display (%ux%u) on I2C port %d (addr 0x%02X)",
-             config_.width, config_.height, config_.i2c_port, config_.i2c_address);
+    ESP_LOGI(TAG, "Initializing SSD1306 OLED display (%ux%u) on I2C bus (addr 0x%02X)",
+             config_.width, config_.height, config_.i2c_address);
 
+    if (config_.i2c_bus == nullptr) {
+        ESP_LOGE(TAG, "I2C bus handle (i2c_bus) cannot be null");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    esp_err_t ret;
     esp_lcd_panel_io_i2c_config_t io_config = {};
     io_config.dev_addr = config_.i2c_address;
-    io_config.scl_speed_hz = 400000;
     io_config.control_phase_bytes = 1;
     io_config.lcd_cmd_bits = 8;
     io_config.lcd_param_bits = 8;
-    io_config.dc_bit_offset = 0;
+    io_config.dc_bit_offset = 6; // SSD1306 uses bit 6 for D/C#
+    io_config.scl_speed_hz = config_.i2c_clk_speed_hz;
 
-    esp_err_t ret = esp_lcd_new_panel_io_i2c(static_cast<i2c_port_t>(config_.i2c_port), &io_config, &io_handle_);
+    ret = esp_lcd_new_panel_io_i2c(static_cast<i2c_master_bus_handle_t>(config_.i2c_bus), &io_config, &io_handle_);
+
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to create panel IO I2C: %s", esp_err_to_name(ret));
         return ret;
@@ -74,6 +81,8 @@ esp_err_t HalDisplaySsd1306::init() {
         ESP_LOGE(TAG, "Failed to init SSD1306 panel: %s", esp_err_to_name(ret));
         return ret;
     }
+
+    // No hardware mirroring or gap configurations to avoid display driver out-of-bound bugs
 
     ret = esp_lcd_panel_disp_on_off(panel_handle_, true);
     if (ret != ESP_OK) {
