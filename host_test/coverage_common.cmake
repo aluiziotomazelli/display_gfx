@@ -11,12 +11,12 @@ macro(setup_gtest_coverage PROJECT_NAME EXECUTABLE_NAME)
 
         # Set default patterns to extract coverage
         if(NOT EXTRACT_PATTERNS_${PROJECT_NAME})
-            set(EXTRACT_PATTERNS_${PROJECT_NAME} "*/espnow_manager/src/*" "*/espnow_manager/include/*")
+            set(EXTRACT_PATTERNS_${PROJECT_NAME} "*/display_gfx/src/*" "*/display_gfx/include/*")
         endif()
 
         # Set default patterns to remove
         if(NOT REMOVE_PATTERNS_${PROJECT_NAME})
-            set(REMOVE_PATTERNS_${PROJECT_NAME} "*/espnow_manager/include/interfaces/*")
+            set(REMOVE_PATTERNS_${PROJECT_NAME} "*/display_gfx/include/interfaces/*")
         endif()
 
         # Extraction command for coverage
