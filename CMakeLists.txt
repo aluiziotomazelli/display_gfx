@@ -2,15 +2,21 @@ set(COMPONENT_NAME display_gfx)
 
 if(IDF_TARGET STREQUAL "linux")
     idf_component_register(
+        SRCS
+            "src/framebuffer_graphics_context.cpp"
         INCLUDE_DIRS 
             "include"
             "include/interfaces"
+            "include/fonts"
     )
 else()
     idf_component_register(
+        SRCS
+            "src/framebuffer_graphics_context.cpp"
         INCLUDE_DIRS 
             "include"
             "include/interfaces"
+            "include/fonts"
         REQUIRES
             esp_lcd
             driver

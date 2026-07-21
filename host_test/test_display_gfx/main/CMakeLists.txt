@@ -4,6 +4,7 @@ idf_component_register(
     SRCS 
         "main.cpp"
         "test_interfaces.cpp"
+        "test_framebuffer_graphics_context.cpp"
     
     INCLUDE_DIRS
         "."
