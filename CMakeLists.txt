@@ -4,6 +4,7 @@ if(IDF_TARGET STREQUAL "linux")
     idf_component_register(
         SRCS
             "src/framebuffer_graphics_context.cpp"
+            "src/hal_display_ssd1306.cpp"
         INCLUDE_DIRS 
             "include"
             "include/interfaces"
@@ -13,6 +14,7 @@ else()
     idf_component_register(
         SRCS
             "src/framebuffer_graphics_context.cpp"
+            "src/hal_display_ssd1306.cpp"
         INCLUDE_DIRS 
             "include"
             "include/interfaces"

@@ -5,6 +5,7 @@ idf_component_register(
         "main.cpp"
         "test_interfaces.cpp"
         "test_framebuffer_graphics_context.cpp"
+        "test_hal_display_ssd1306.cpp"
     
     INCLUDE_DIRS
         "."
