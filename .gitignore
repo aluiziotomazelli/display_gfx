@@ -1,7 +1,9 @@
 build/
+.cache/
 sdkconfig
 sdkconfig.old
 sdkconfig.defaults.old
 dependencies.lock
 *.gcda
 *.gcno
+
