@@ -1,0 +1,39 @@
+# Display Gfx Component Manifest
+version: "0.1.0"
+description: "A lightweight, dependency-injected monochrome graphics library for SSD1306 OLED displays on ESP-IDF."
+maintainers:
+  - "Aluizio Tomazelli <aluiziotomazelli@gmail.com>"
+
+license: "MIT"
+
+tags:
+  - display
+  - graphics
+  - ssd1306
+  - oled
+  - esp32
+  - cpp
+
+targets:
+  - esp32
+  - esp32s2
+  - esp32s3
+  - esp32c3
+  - linux
+
+dependencies:
+  idf: ">=5.1"
+
+files:
+  use_gitignore: true
+  exclude:
+    - "host_test/**/*"
+    - "test_apps/**/*"
+    - ".clang-format"
+    - ".gitignore"
+
+examples:
+  - path: "examples/basic_usage"
+
+url: "https://github.com/aluiziotomazelli/display_gfx"
+repository: "https://github.com/aluiziotomazelli/display_gfx.git"
